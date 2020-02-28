@@ -4,11 +4,12 @@ import { axiosWithAuth } from "../utils/axiosWithAuth";
 const Registration = props => {
     const [credentials, setCredentials] = useState(
       {
-        username: "Lambda School",
-        password: "i<3Lambd4"
-        
+        username: "",
+        email: "",
+        password: ""
       }
     );
+
     const [checkPassword, setCheckPassword] = useState("");
   
     const handleChange = e => {
@@ -19,9 +20,32 @@ const Registration = props => {
         }
       });
     };
+
+    const resetPasswords = () => {
+      setCredentials({
+        ...credentials,
+        password: ""
+      });
+      setCheckPassword("");
+    }
   
+    const comparePasswords = () => {
+      if(checkPassword !== credentials.password)
+      {
+        console.log("Error: Passwords do not match");
+        resetPasswords();
+        return false;
+      }
+
+      return true;
+    }
+
     const register = e => {
       e.preventDefault();
+
+      if(!comparePasswords())
+        return;
+
       axiosWithAuth()
         .post("/register", credentials)
         .then(res => {
@@ -35,15 +59,21 @@ const Registration = props => {
     };
   
     return (
-      <>
-        <h1>Welcome to the SAVE THE WHALES Silent Auction!</h1>
-        <p>Create a new account here</p>
+      <div className="login" classname="register">
+        <h1>Create a new account</h1>
         <form onSubmit={register}>
                 <label>User Name</label>
                 <input
                     type="text"
                     name="username"
                     value={credentials.username}
+                    onChange={handleChange}
+                />
+                <label>E-mail</label>
+                <input
+                    type="text"
+                    name="username"
+                    value={credentials.email}
                     onChange={handleChange}
                 />
                 <label>Password</label>
@@ -58,11 +88,11 @@ const Registration = props => {
                     type="password"
                     name="password"
                     value={credentials.password}
-                    onChange={handleChange}
+                    onChange={(event) => setCheckPassword(event.target.value)}
                 />
                 <button>Create Account</button>
           </form>
-      </>
+      </div>
     );
   };
   

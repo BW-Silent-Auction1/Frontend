@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 
 const Login = props => {
@@ -33,25 +34,28 @@ const Login = props => {
     };
   
     return (
-      <>
-        <h1>Welcome to the SAVE THE WHALES Silent Auction!</h1>
-        <p>Login here</p>
+      <div className="login">
+        <h1>Log in to your account</h1>
         <form onSubmit={login}>
-              <input
-                type="text"
-                name="username"
-                value={credentials.username}
-                onChange={handleChange}
-              />
-              <input
-                type="password"
-                name="password"
-                value={credentials.password}
-                onChange={handleChange}
-              />
+            <label>User Name</label>
+            <input
+              type="text"
+              name="username"
+              value={credentials.username}
+              onChange={handleChange}
+            />
+            <label>Password</label>
+            <input
+              type="password"
+              name="password"
+              value={credentials.password}
+              onChange={handleChange}
+            />
               <button>Log in</button>
-          </form>
-      </>
+        </form>
+        <p>Don't have an account?</p>
+        <Link to="/register">Create a new account</Link>
+      </div>
     );
   };
   

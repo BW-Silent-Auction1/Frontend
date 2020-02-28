@@ -8,7 +8,9 @@ import './App.css';
 //Components
 import PrivateRoute from './components/PrivateRoute';
 import Home from './components/Home';
+import Registration from './components/Registration';
 import Login from './components/Login';
+import NavBar from './components/NavBar';
 
 //Context
 import UserContext from './contexts/UserContext';
@@ -20,12 +22,16 @@ function App() {
   return (
     <UserContext.Provider value={{user}}>
       <Router>
-        <div>
+        <NavBar />
+        <div className="App">
           <Switch>
             <PrivateRoute exact path="/home" component={Home} />
-            <Route exact path="/" component={Login} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/register" component={Registration} />
+            {/* <Route exact path="/createauction" component={CreateAuction} /> */}
           </Switch>
         </div>
+        
       </Router>
     </UserContext.Provider>
   );
