@@ -16,23 +16,28 @@ import NavBar from './components/NavBar';
 import UserContext from './contexts/UserContext';
 import AuctionsContext from './contexts/AuctionsContext';
 
+//Custom Hooks
+import useAuctions from './hooks/useAuctions';
+
 function App() {
   const [user] = useState(null);
+  const [auctions, updateAuctions] = useAuctions([]);
 
   return (
     <UserContext.Provider value={{user}}>
-      <Router>
-        <NavBar />
-        <div className="App">
-          <Switch>
-            <PrivateRoute exact path="/home" component={Home} />
-            <Route exact path="/login" component={Login} />
-            <Route exact path="/register" component={Registration} />
-            {/* <Route exact path="/createauction" component={CreateAuction} /> */}
-          </Switch>
-        </div>
-        
-      </Router>
+      <AuctionsContext.Provider value={{auctions, updateAuctions}}>>
+        <Router>
+          <NavBar />
+          <div className="App">
+            <Switch>
+              <PrivateRoute exact path="/home" component={Home} />
+              <Route exact path="/login" component={Login} />
+              <Route exact path="/register" component={Registration} />
+              {/* <Route exact path="/createauction" component={CreateAuction} /> */}
+            </Switch>
+          </div>         
+        </Router>
+      </AuctionsContext.Provider>
     </UserContext.Provider>
   );
 }

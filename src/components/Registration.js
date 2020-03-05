@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { axiosWithAuth } from "../utils/axiosWithAuth";
+import axiosWithAuth from "../utils/axiosWithAuth";
 
 const Registration = props => {
     const [credentials, setCredentials] = useState(
@@ -49,12 +49,12 @@ const Registration = props => {
       axiosWithAuth()
         .post("/register", credentials)
         .then(res => {
-          //localStorage.setItem("token", res.data.payload);
+          localStorage.setItem("token", res.data.payload);
           props.history.push("/login");
         })
         .catch(err => {
           localStorage.removeItem("token");
-          console.log("invalid login: ", err);
+          console.log("registration failed: ", err);
         });
     };
   

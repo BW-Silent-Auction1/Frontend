@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
-import { axiosWithAuth } from "../utils/axiosWithAuth";
+import axiosWithAuth from "../utils/axiosWithAuth";
+import AuctionsContext from '../contexts/AuctionsContext';
 
 const Login = props => {
+    const {auctions, updateAuctions} = useContext(AuctionsContext);
     const [credentials, setCredentials] = useState(
       {
-        username: "Lambda School",
-        password: "i<3Lambd4"
+        username: "test20",
+        password: "test20"
       }
     );
   
@@ -22,9 +24,11 @@ const Login = props => {
     const login = e => {
       e.preventDefault();
       axiosWithAuth()
-        .post("/login", credentials)
+        .post("/auth/login", credentials)
         .then(res => {
-          localStorage.setItem("token", res.data.payload);
+          console.log(res);
+          localStorage.setItem("token", res.data.token);
+          updateAuctions();
           props.history.push("/home");
         })
         .catch(err => {
