@@ -28,6 +28,7 @@ const AuctionCard = props => {
             <h1>{auction.auction_title}</h1>
             <h2>Created by {auction.user_id}</h2>
             <h2>Starting Price</h2>
+            <p>{auction.current_price}</p>
             <h2>Start Time:</h2>
             <p>{auction.starttime}</p>
             <h2>End Time:</h2>
