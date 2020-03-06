@@ -36,11 +36,11 @@ function App() {
           <div className="App">
             <Switch>
               <PrivateRoute exact path="/home" component={Home} />
+              <PrivateRoute exact path="/" component={Home} />
               <Route exact path="/login" component={Login} />
-              <Route exact path="/" component={Login} />
               <Route exact path="/register" component={Registration} />
-              <Route exact path="/auctions/:id" component={AuctionCard} />
-              <Route exact path="/newauction" component={NewAuction} />
+              <PrivateRoute exact path="/auctions/:id" component={AuctionCard} />
+              <PrivateRoute exact path="/newauction" component={NewAuction} />
             </Switch>
           </div>         
         </Router>

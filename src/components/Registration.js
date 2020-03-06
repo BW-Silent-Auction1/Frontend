@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import axiosWithAuth from "../utils/axiosWithAuth";
+import axiosWithAuth from '../utils/axiosWithAuth';
 
 const Registration = props => {
     const [credentials, setCredentials] = useState(
       {
-        username: "",
-        email: "",
-        password: ""
+        "username": "",
+        "email": "",
+        "password": ""
       }
     );
 
@@ -57,11 +57,12 @@ const Registration = props => {
         return;
 
       axiosWithAuth()
-        .post("/auth/register", credentials)
+        .post("auth/register", credentials)
         .then(res => {
           props.history.push("/login");
         })
         .catch(err => {
+          console.log(credentials)
           console.log("registration failed: ", err);
         });
     };
