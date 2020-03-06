@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from 'styled-components';
 import './NewAuction.css';
 import axios from "axios";
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import water2 from './images/water2.jpg';
 
 const StyledDiv = styled.div`
