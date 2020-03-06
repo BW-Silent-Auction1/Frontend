@@ -14,10 +14,8 @@ const Login = props => {
   
     const handleChange = e => {
       setCredentials({
-        credentials: {
           ...credentials,
           [e.target.name]: e.target.value
-        }
       });
     };
   
