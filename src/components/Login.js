@@ -1,14 +1,14 @@
 import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import axiosWithAuth from "../utils/axiosWithAuth";
-import AuctionsContext from '../contexts/AuctionsContext';
+import UserContext from '../contexts/UserContext';
 
 const Login = props => {
-    const {auctions, updateAuctions} = useContext(AuctionsContext);
+    const {user, updateUser} = useContext(UserContext);
     const [credentials, setCredentials] = useState(
       {
-        username: "test20",
-        password: "test20"
+        username: "test",
+        password: "testtest"
       }
     );
   
@@ -28,7 +28,8 @@ const Login = props => {
         .then(res => {
           console.log(res);
           localStorage.setItem("token", res.data.token);
-          updateAuctions();
+          localStorage.setItem("user", JSON.stringify(res.data.user));
+          //updateUser();
           props.history.push("/home");
         })
         .catch(err => {

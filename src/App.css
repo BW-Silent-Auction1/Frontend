@@ -68,3 +68,10 @@
   font-size: 1em;
   margin-bottom: 15px;
 }
+
+.small-card {
+  background: lightblue;
+  border: 2px solid black;
+  width: 70%;
+  margin: 5px auto;
+}

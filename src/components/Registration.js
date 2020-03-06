@@ -13,12 +13,16 @@ const Registration = props => {
     const [checkPassword, setCheckPassword] = useState("");
   
     const handleChange = e => {
+      console.log(handleChange, e.target.name, e.target.value, credentials);
       setCredentials({
-        credentials: {
           ...credentials,
           [e.target.name]: e.target.value
-        }
       });
+    };
+
+    const handleChangePass = e => {
+      console.log("handeChangePass");
+      setCheckPassword(e.target.value);
     };
 
     const resetPasswords = () => {
@@ -29,11 +33,17 @@ const Registration = props => {
       setCheckPassword("");
     }
   
-    const comparePasswords = () => {
+    const validatePassword = () => {
       if(checkPassword !== credentials.password)
       {
-        console.log("Error: Passwords do not match");
+        console.log("Error: Passwords do not match", checkPassword, credentials.password);
         resetPasswords();
+        return false;
+      }
+
+      if(credentials.password.length < 8)
+      {
+        console.log("Error: password is too short. Must be at least 8 characters", `Current length: ${credentials.password.length}`)
         return false;
       }
 
@@ -43,23 +53,21 @@ const Registration = props => {
     const register = e => {
       e.preventDefault();
 
-      if(!comparePasswords())
+      if(!validatePassword())
         return;
 
       axiosWithAuth()
-        .post("/register", credentials)
+        .post("/auth/register", credentials)
         .then(res => {
-          localStorage.setItem("token", res.data.payload);
           props.history.push("/login");
         })
         .catch(err => {
-          localStorage.removeItem("token");
           console.log("registration failed: ", err);
         });
     };
   
     return (
-      <div className="login" classname="register">
+      <div className="login">
         <h1>Create a new account</h1>
         <form onSubmit={register}>
                 <label>User Name</label>
@@ -72,7 +80,7 @@ const Registration = props => {
                 <label>E-mail</label>
                 <input
                     type="text"
-                    name="username"
+                    name="email"
                     value={credentials.email}
                     onChange={handleChange}
                 />
@@ -86,9 +94,9 @@ const Registration = props => {
                 <label>Confirm Password</label>
                 <input
                     type="password"
-                    name="password"
-                    value={credentials.password}
-                    onChange={(event) => setCheckPassword(event.target.value)}
+                    name="checkpassword"
+                    value={checkPassword}
+                    onChange={handleChangePass}
                 />
                 <button>Create Account</button>
           </form>

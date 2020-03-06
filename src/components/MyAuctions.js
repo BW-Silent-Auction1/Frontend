@@ -3,7 +3,10 @@ import AuctionCardSmall from './AuctionCardSmall';
 import AuctionsContext from '../contexts/AuctionsContext';
 
 const MyAuctions = props => {
-    const {auctions} = useContext(AuctionsContext);
+    const {auctions, updateAuctions} = useContext(AuctionsContext);
+
+    if(!auctions)
+        return <div>Loading...</div>;
 
     return (
         <div className="auction-list">
