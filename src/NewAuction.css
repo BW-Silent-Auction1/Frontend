@@ -1,11 +1,12 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
 body {
-    background-color: lightskyblue;
-    
+    /* background-color: lightskyblue; */
+    color: color;
 }
 #mainDiv {
     background-image: url('./images/whale.jpg');
     background-repeat:no-repeat;
-
+height: 900px;
 }
 #div1 {
 display: flex;
@@ -21,13 +22,14 @@ input {
 }
 
 label {
-    font-family: 'Times New Roman', Times, serif;
+    font-family: 'Montserrat', Times, serif;
     color: rgba(23, 23, 23, 1);
-    font-size: 1rem
+    font-size: .9rem;
+    /* font-weight: bold; */
 }
 
 button {
-    font-family: 'Times New Roman', Times, serif;
+    font-family: 'Montserrat' Times, serif;
     color: rgba(23, 23, 23, 1);
     width: 380px;
     height: 25px; 
@@ -35,4 +37,50 @@ button {
     font-size: .9rem;
     border: 1px solid #ccc;
     cursor: pointer;
+}
+
+
+.jumping-whale {
+  height: 150px;
+  width: 800px;
+  opacity: .9;
+  margin: 0px 0px 0px 200px;
+  padding: 0px 120px;
+}
+nav {
+  padding: 0px 120px;
+  
+}
+nav h1 {
+  font-size: 4rem;
+  height: 70px;
+  text-align: center;
+  padding-bottom: 20px;
+  
+}
+ul {
+  border: 1px solid black;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  height: 50px;
+  /* background-color: gray; */
+  background-color: lightskyblue;
+}
+ul a {
+  padding: 15px 38px;
+  font-size: 1.8rem;
+  /* font-size: .9rem; */
+  font-weight: bold;
+  color: #333333;
+  /* color: lightskyblue; */
+  text-decoration: none;
+  font-family: 'Montserrat',  Times, serif;
+}
+ul a:hover:not(.active) {
+  background-color: #555;
+  color: orange;
+  background-color: darkblue;
 }
