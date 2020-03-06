@@ -1,9 +1,15 @@
+<<<<<<< HEAD
 //Packages
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 //CSS
+=======
+import React from 'react';
+// import logo from './logo.svg';
+>>>>>>> origin/sable-childs
 import './App.css';
+import NewAuction from './NewAuction';
 
 //Components
 import PrivateRoute from './components/PrivateRoute';
