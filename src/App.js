@@ -13,6 +13,7 @@ import Registration from './components/Registration';
 import Login from './components/Login';
 import NavBar from './components/NavBar';
 import AuctionCard from './components/AuctionCard';
+import Logout from './components/Logout';
 
 //Context
 import UserContext from './contexts/UserContext';
@@ -38,6 +39,7 @@ function App() {
               <PrivateRoute exact path="/home" component={Home} />
               <PrivateRoute exact path="/" component={Home} />
               <Route exact path="/login" component={Login} />
+              <Route exact path="/logout" component={Logout} />
               <Route exact path="/register" component={Registration} />
               <PrivateRoute exact path="/auctions/:id" component={AuctionCard} />
               <PrivateRoute exact path="/newauction" component={NewAuction} />

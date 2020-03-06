@@ -7,8 +7,8 @@ const Login = props => {
     const {user, updateUser} = useContext(UserContext);
     const [credentials, setCredentials] = useState(
       {
-        username: "test",
-        password: "testtest"
+        "username": "",
+        "password": ""
       }
     );
   
