@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 //CSS
 import './App.css';
-import NewAuction from './NewAuction';
+import NewAuction from './components/NewAuction';
 
 //Components
 import PrivateRoute from './components/PrivateRoute';
@@ -40,7 +40,7 @@ function App() {
               <Route exact path="/" component={Login} />
               <Route exact path="/register" component={Registration} />
               <Route exact path="/auctions/:id" component={AuctionCard} />
-              {/* <Route exact path="/createauction" component={CreateAuction} /> */}
+              <Route exact path="/newauction" component={NewAuction} />
             </Switch>
           </div>         
         </Router>
