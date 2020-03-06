@@ -7,7 +7,7 @@ const AuctionList = props => {
 
     return (
         <div className="auction-list">
-            {auctions.map(auction => <AuctionCardSmall auction={auction}/>)}       
+            {auctions.map(auction => <AuctionCardSmall key={auction.id} auction={auction}/>)}       
         </div>
     )
 }

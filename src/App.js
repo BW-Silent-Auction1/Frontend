@@ -11,6 +11,7 @@ import Home from './components/Home';
 import Registration from './components/Registration';
 import Login from './components/Login';
 import NavBar from './components/NavBar';
+import AuctionCard from './components/AuctionCard';
 
 //Context
 import UserContext from './contexts/UserContext';
@@ -37,7 +38,7 @@ function App() {
               <Route exact path="/login" component={Login} />
               <Route exact path="/" component={Login} />
               <Route exact path="/register" component={Registration} />
-              <Route exact path="/auctions/:id" component={Registration} />
+              <Route exact path="/auctions/:id" component={AuctionCard} />
               {/* <Route exact path="/createauction" component={CreateAuction} /> */}
             </Switch>
           </div>         

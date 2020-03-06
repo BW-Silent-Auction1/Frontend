@@ -27,7 +27,8 @@ const Home = props => {
                 <button onClick={() => setPage(1)}>All Auctions</button>
             </div>
 
-            {page === 0 ? <MyAuctions /> : <AuctionList/>}
+            {/* {page === 0 ? <MyAuctions /> : <AuctionList/>} */}
+            <AuctionList page={page} />
         </div>
     )
 }
