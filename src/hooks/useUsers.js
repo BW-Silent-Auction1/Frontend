@@ -14,7 +14,7 @@ const useUsers = initialState => {
             .get("/auth/users")
             .then(res => {
                 console.log(res.data)
-                setUsers(res.data.user)
+                setUsers(res.data)
             })
             .catch(err => {
                 console.log(`Error in updateUsers: ${err}`)

@@ -17,6 +17,7 @@ import Logout from './components/Logout';
 
 //Context
 import UserContext from './contexts/UserContext';
+import UsersContext from './contexts/UsersContext';
 import AuctionsContext from './contexts/AuctionsContext';
 
 //Custom Hooks
@@ -31,22 +32,24 @@ function App() {
 
   return (
     <UserContext.Provider value={{user, updateUser}}>
-      <AuctionsContext.Provider value={{auctions, updateAuctions}}>>
-        <Router>
-          <NavBar />
-          <div className="App">
-            <Switch>
-              <PrivateRoute exact path="/home" component={Home} />
-              <PrivateRoute exact path="/" component={Home} />
-              <Route exact path="/login" component={Login} />
-              <Route exact path="/logout" component={Logout} />
-              <Route exact path="/register" component={Registration} />
-              <PrivateRoute exact path="/auctions/:id" component={AuctionCard} />
-              <PrivateRoute exact path="/newauction" component={NewAuction} />
-            </Switch>
-          </div>         
-        </Router>
-      </AuctionsContext.Provider>
+      <UsersContext.Provider value={{users, updateUsers}}>
+        <AuctionsContext.Provider value={{auctions, updateAuctions}}>>
+          <Router>
+            <NavBar />
+            <div className="App">
+              <Switch>
+                <PrivateRoute exact path="/home" component={Home} />
+                <PrivateRoute exact path="/" component={Home} />
+                <Route exact path="/login" component={Login} />
+                <Route exact path="/logout" component={Logout} />
+                <Route exact path="/register" component={Registration} />
+                <PrivateRoute exact path="/auctions/:id" component={AuctionCard} />
+                <PrivateRoute exact path="/newauction" component={NewAuction} />
+              </Switch>
+            </div>         
+          </Router>
+        </AuctionsContext.Provider>
+      </UsersContext.Provider>
     </UserContext.Provider>
   );
 }

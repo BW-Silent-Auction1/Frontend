@@ -24,6 +24,9 @@ const BidForm = ({auction, user_id}) => {
             setBid({...bid, "amount": e.target.value});
     };
 
+    if(auction.endtime < Date.now())
+        return <h2>This auction has ended</h2>
+
     if(success)
         return <h2>Your bid as been submitted</h2>
 
