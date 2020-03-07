@@ -14,7 +14,7 @@ const NavBar = () => {
         <Link to='/newauction'>Create Auction</Link>
         <Link to='/aboutus'>About us</Link>
         <Link to='/profile'>Profile</Link>
-        <Link to='/'>Logout</Link>
+        <Link to='/logout'>Logout</Link>
         
         
          </ul>
