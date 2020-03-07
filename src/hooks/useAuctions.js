@@ -2,11 +2,11 @@ import {useState, useEffect} from 'react';
 import axiosWithAuth from '../utils/axiosWithAuth';
 
 const useUser = initialState => {
-    console.log("useUser")
+    console.log("useAuctions")
     const [auction, setAuctions] = useState(initialState);
 
     const updateAuctions = () => {
-        console.log("useUser updateUser")
+        console.log("useAuctions updateAuctions")
         if(!localStorage.getItem("token"))
             return;
 

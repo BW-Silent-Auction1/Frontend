@@ -19,35 +19,40 @@ import Logout from './components/Logout';
 import UserContext from './contexts/UserContext';
 import UsersContext from './contexts/UsersContext';
 import AuctionsContext from './contexts/AuctionsContext';
+import BidsContext from './contexts/BidsContext';
 
 //Custom Hooks
 import useAuctions from './hooks/useAuctions';
 import useUsers from './hooks/useUsers';
 import useUser from './hooks/useUser';
+import useBids from './hooks/useBids';
 
 function App() {
   const [user, updateUser] = useUser();
   const [users, updateUsers] = useUsers();
   const [auctions, updateAuctions] = useAuctions();
+  const [bids, updateBids] = useBids();
 
   return (
     <UserContext.Provider value={{user, updateUser}}>
       <UsersContext.Provider value={{users, updateUsers}}>
         <AuctionsContext.Provider value={{auctions, updateAuctions}}>>
-          <Router>
-            <NavBar />
-            <div className="App">
-              <Switch>
-                <PrivateRoute exact path="/home" component={Home} />
-                <PrivateRoute exact path="/" component={Home} />
-                <Route exact path="/login" component={Login} />
-                <Route exact path="/logout" component={Logout} />
-                <Route exact path="/register" component={Registration} />
-                <PrivateRoute exact path="/auctions/:id" component={AuctionCard} />
-                <PrivateRoute exact path="/newauction" component={NewAuction} />
-              </Switch>
-            </div>         
-          </Router>
+          <BidsContext.Provider value={{bids, updateBids}}>>
+            <Router>
+              <NavBar />
+              <div className="App">
+                <Switch>
+                  <PrivateRoute exact path="/home" component={Home} />
+                  <PrivateRoute exact path="/" component={Home} />
+                  <Route exact path="/login" component={Login} />
+                  <Route exact path="/logout" component={Logout} />
+                  <Route exact path="/register" component={Registration} />
+                  <PrivateRoute exact path="/auctions/:id" component={AuctionCard} />
+                  <PrivateRoute exact path="/newauction" component={NewAuction} />
+                </Switch>
+              </div>         
+            </Router>
+          </BidsContext.Provider>
         </AuctionsContext.Provider>
       </UsersContext.Provider>
     </UserContext.Provider>
