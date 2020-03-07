@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import styled from 'styled-components';
-import './NewAuction.css';
+import '../NewAuction.css';
 import axios from "axios";
-import { Link } from 'react-router-dom';
-import water2 from './images/water2.jpg';
+
 
 const StyledDiv = styled.div`
 width: 800px;
@@ -57,21 +56,7 @@ const NewAuction = props => {
     }
 
     return (
-        <div>
-        <div className="navigation">	
-    <img src={water2} className="jumping-whale" alt="Whale" />
-	<nav>
-	
-	<ul>
-	{/* <Link to={null}>Home</Link>
-    <Link to={null}>Create Auction</Link>
-    <Link to={null}>About us</Link>
-	<Link to={null}>Logout</Link>
-	<Link to={null}>Profile</Link> */}
-	
-	</ul>
-	</nav>
-  </div>
+
         <StyledDiv id="mainDiv">
         <StyledDiv1 id="div1">
             <form onSubmit={event => handleSubmit(event)}>
@@ -131,7 +116,7 @@ const NewAuction = props => {
             </form>
             </StyledDiv1>
         </StyledDiv>
-        </div>
+        
     )
 }
 
