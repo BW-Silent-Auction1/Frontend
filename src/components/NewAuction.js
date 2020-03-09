@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import styled from 'styled-components';
 import '../NewAuction.css';
 import axios from "axios";
+import axiosWithAuth from "../utils/axiosWithAuth";
+import UserContext from "../contexts/UserContext";
 
 
 const StyledDiv = styled.div`
@@ -26,27 +28,54 @@ margin-top: 20px;
 margin-bottom: 150px;
 `
 const NewAuction = props => {
-    const [auction, setAuction] = useState({auction_title: '', auction_description: '', id: '', pictures_id:'', current_price:''})
+    const [auction, setAuction] = useState({
+        "auction_title": '', 
+        "auction_description": '', 
+        "user_id": '',  
+        "starttime": Date.now(),
+        "endtime" : Date.now() + 86400000,
+        "current_price":''
+    });
+    const [pictures_id, setPictures] = useState();
+    const {user, updateUser} = useContext(UserContext);
+
+    useEffect(() => {
+        if(!user)
+            updateUser(); //Loads user info from local storage
+    }, []);
 
     const handleChange = event => {
-        setAuction({...auction, [event.target.name]: event.target.value})
+        if(event.target.name === 'pictures_id')
+            setPictures(event.target.value);
+        else
+            setAuction({...auction, [event.target.name]: event.target.value});
     }
     const handleSubmit = event => {
         event.preventDefault();
         console.log(auction.auction_title);
         console.log(auction.auction_description);
-        console.log(auction.id);
-        console.log(auction.pictures_id);
+        console.log(auction.user_id);
+        //console.log(auction.pictures_id);
         console.log(auction.current_price)
-        axios.post('https://silent-auction-69.herokuapp.com/api/items', auction)
-        .then(res => {
-            console.log('res:', res)
-        })
-        .catch(err => {
-            console.log('error:', err)
-        })
+        
+        axiosWithAuth()
+            .post(`/auth/users/${user.id}/auctions`, auction)
+            .then(res => {
+                console.log('res:', res)
+            })
+            .catch(err => {
+                console.log('error:', err)
+            })
+        
+        // axios.post('https://silent-auction-69.herokuapp.com/api/items', auction)
+        // .then(res => {
+        //     console.log('res:', res)
+        // })
+        // .catch(err => {
+        //     console.log('error:', err)
+        // })
 
-        axios.post('https://silent-auction-69.herokuapp.com/api/pictures', auction.pictures_id)
+        axios.post('https://silent-auction-69.herokuapp.com/api/pictures', pictures_id)
         .then(res2 => {console.log('res2:',res2)
         
         })
@@ -73,7 +102,7 @@ const NewAuction = props => {
              <StyledDiv2>
             <label> Description
                <input type="text" 
-               name="item_description"
+               name="auction_description"
                placeholder="description"
                onChange={event => handleChange(event)}
                />
@@ -81,11 +110,11 @@ const NewAuction = props => {
             </label>
             </StyledDiv2>
             <StyledDiv2>
-            <label>Auction ID
+            <label>User ID
                <input type="text"
                pattern="[0-9]"
-               name="auctions_id"
-               placeholder="auction id"
+               name="user_id"
+               placeholder="user id"
                onChange={event => handleChange(event)}
                />
              </label>
