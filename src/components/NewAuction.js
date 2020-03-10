@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from 'styled-components';
 import '../NewAuction.css';
 import axios from "axios";
-
+import cogoToast from 'cogo-toast';
 
 const StyledDiv = styled.div`
 width: 800px;
@@ -38,13 +38,18 @@ const NewAuction = props => {
         console.log(auction.id);
         console.log(auction.pictures_id);
         console.log(auction.current_price);
-        axios.post('https://silent-auction-69.herokuapp.com/api/items', auction)
-        .then(res => {
-            console.log('res:', res)
-        })
-        .catch(err => {
-            console.log('error:', err)
-        })
+        //validate auction id 
+        //if valid then run axios else pop up cogo toast
+        function validateNumbers() {
+            return auctions_id == [0-9]*$ ? axios.post('https://silent-auction-69.herokuapp.com/api/items', auction)
+            .then(res => {
+                console.log('res:', res)
+            })
+            .catch(err => {
+                console.log('error:', err)
+            }) : cogoToast.error('')
+        }
+        
 
         axios.post('https://silent-auction-69.herokuapp.com/api/pictures', auction.pictures_id)
         .then(res2 => {console.log('res2:',res2)
@@ -82,7 +87,7 @@ const NewAuction = props => {
             </StyledDiv2>
             <StyledDiv2>
             <label>Auction ID
-               <input type="number"
+               <input type="text"
                pattern="[0-9]"
                name="auctions_id"
                placeholder="auction id"
