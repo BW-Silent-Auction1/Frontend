@@ -37,7 +37,7 @@ const NewAuction = props => {
         console.log(auction.auction_description);
         console.log(auction.id);
         console.log(auction.pictures_id);
-        console.log(auction.current_price)
+        console.log(auction.current_price);
         axios.post('https://silent-auction-69.herokuapp.com/api/items', auction)
         .then(res => {
             console.log('res:', res)
@@ -82,7 +82,7 @@ const NewAuction = props => {
             </StyledDiv2>
             <StyledDiv2>
             <label>Auction ID
-               <input type="text"
+               <input type="number"
                pattern="[0-9]"
                name="auctions_id"
                placeholder="auction id"
@@ -101,7 +101,7 @@ const NewAuction = props => {
              </StyledDiv2>
              <StyledDiv2>
             <label>Starting Bid
-               <input type="text"
+               <input type="number"
                name="current_price"
                placeholder="starting bid"
                onChange={event => handleChange(event)}
