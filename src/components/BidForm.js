@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import axiosWithAuth from "../utils/axiosWithAuth";
+import BidHistory from "./BidHistory";
 import AuctionsContext from '../contexts/AuctionsContext';
 
 const BidForm = ({auction, user_id}) => {
@@ -25,7 +26,13 @@ const BidForm = ({auction, user_id}) => {
     };
 
     if(auction.endtime < Date.now())
-        return <h2>This auction has ended</h2>
+        return (
+            <>
+                <h2>This auction has ended</h2>
+                <h3>Bidding History</h3>
+                <BidHistory auction={auction}/>
+            </>
+        );
 
     if(success)
         return <h2>Your bid as been submitted</h2>

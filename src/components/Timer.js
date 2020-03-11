@@ -16,9 +16,10 @@ const Timer = props => {
         seconds: 0
     });
 
+    useEffect(() => {
     setInterval(() => {
         setTimeLeft(endtime - Date.now());
-    }, 1000);
+    }, 1000)}, []);
 
     useEffect(() => {
         if(timeleft > 0)
